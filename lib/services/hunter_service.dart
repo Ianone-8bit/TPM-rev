@@ -3,13 +3,12 @@ import 'package:sqflite/sqflite.dart';
 import 'database_service.dart';
 
 class HunterService {
-  static final HunterService instance =
-      HunterService();
+  static final HunterService instance = HunterService();
 
-  Future<Map<String, dynamic>?> getHunter(
-      String username) async {
-    Database db =
-        await DatabaseService.instance.database;
+  /// Ambil data hunter, auto-buat row baru jika belum ada
+  Future<Map<String, dynamic>?> getHunter(String username) async {
+    if (username.isEmpty) return null;
+    Database db = await DatabaseService.instance.database;
 
     final result = await db.query(
       'users',
@@ -18,7 +17,14 @@ class HunterService {
     );
 
     if (result.isEmpty) {
-      return null;
+      // Buat data awal untuk user baru
+      await db.insert('users', {
+        'username': username,
+        'level': 1,
+        'exp': 0,
+        'gold': 0,
+      });
+      return {'username': username, 'level': 1, 'exp': 0, 'gold': 0};
     }
 
     return result.first;

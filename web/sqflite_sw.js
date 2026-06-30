@@ -7475,18 +7475,13 @@ $1(a){if(t.p.b(a))return"blob ("+a.length+" bytes)"
 else return J.aH(a)},
 $S:43}
 A.e8.prototype={
-R(){var s,r,q,p,o,n=this
-if(n.r)return
-n.r=!0
-s=n.b
-r=s.b
-q=s.a.d
-q.dart_sqlite3_updates(r,null)
-q.dart_sqlite3_commits(r,null)
-q.dart_sqlite3_rollbacks(r,null)
-p=s.cd()
-o=p!==0?A.kD(n.a,s,p,"closing database",null,null):null
-if(o!=null)throw A.c(o)},
+R(){var s,r,q,p=this
+if(p.r)return
+p.r=!0
+s=p.b
+r=s.cd()
+q=r!==0?A.kD(p.a,s,r,"closing database",null,null):null
+if(q!=null)throw A.c(q)},
 eJ(a){var s,r,q,p=this,o=B.o
 if(J.T(o)===0){if(p.r)A.G(A.W("This database has already been closed"))
 r=p.b
@@ -8271,7 +8266,8 @@ g=i.a(h.key)
 if(1<0||1>=g.length){q=A.b(g,1)
 s=1
 break}f=A.d(A.av(g[1]))
-B.b.p(k,A.nG(new A.fD(h,l,f,Math.min(4096,A.d(m.length)-f)),e))
+if(f>=A.d(m.length)){s=5
+break}B.b.p(k,A.nG(new A.fD(h,l,f,Math.min(4096,A.d(m.length)-f)),e))
 s=4
 break
 case 5:s=7
@@ -8319,7 +8315,7 @@ case 2:m=e
 s=A.d(m.length)>c?3:4
 break
 case 3:s=5
-return A.f(A.aI(A.n(n.delete(q.dW(b,B.c.E(c,4096)*4096+1))),t.X),$async$ag)
+return A.f(A.aI(A.n(n.delete(q.dW(b,B.c.E(c,4096)*4096))),t.X),$async$ag)
 case 5:case 4:l=new A.bL(A.n(o.openCursor(b)),t.O)
 s=6
 return A.f(l.m(),$async$ag)
